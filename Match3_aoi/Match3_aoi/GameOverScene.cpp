@@ -34,13 +34,13 @@ int GameOverScene_Initialize(void)
 	GameOverFlag = FALSE;
 
 	//エラーチェック
-	if (GameOverImage == -1)
+	if (GameOverImage == D_ERROR)
 	{
-		ret = -1;
+		ret = D_ERROR;
 	}
-	if (GameOverSE == 01)
+	if (GameOverSE == D_ERROR)
 	{
-		ret = -1;
+		ret = D_ERROR;
 	}
 	return ret;
 }
