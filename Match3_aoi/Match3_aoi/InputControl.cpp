@@ -2,6 +2,15 @@
 #include"InputControl.h"
 
 /************************
+*変数宣言
+*************************/
+
+int old_button;
+int now_button;
+int mouse_position_x;
+int mouse_position_y;
+
+/************************
 *プロトタイプ宣言
 *************************/
 
@@ -34,7 +43,7 @@ void Input_Update(void)
 	now_button = GetMouseInput();
 
 	//マウスカーソル座標の取得
-	GetMousePoint(&mouse_position_x, &mouse_position_y, );
+	GetMousePoint(&mouse_position_x, &mouse_position_y );
 }
 
 
@@ -69,7 +78,7 @@ int GetOldKey(int key)
 
 	if ((key & old_button) != FALSE)
 	{
-		ret = TURE;
+		ret = TRUE;
 	}
 	return ret;
 }
@@ -98,7 +107,7 @@ int GetNowKey(int key)
 *戻り値：TRUE(入力された),FALSE(未入力)
 ***********************/
 
-int GetKeyFlg(int key);
+int GetKeyFlg(int key)
 {
 	int ret = FALSE;
 	int keyflg = now_button & ~old_button;

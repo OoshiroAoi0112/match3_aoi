@@ -64,9 +64,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 //シーンマネージャー初期化処理
 //エラーが発生したら、終了する
-	if (SceneManager_Initialize(E_TIELE) == D_ERROR)
+	if (SceneManager_Initialize(E_TITLE) == D_ERROR)
 	{
-		return D_RREOR;
+		return D_ERROR;
 	}
 
 
@@ -83,7 +83,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		SceneManager_Update();
 
 		//画面クリア
-		CleraDrawScreen();
+		ClearDrawScreen();
 
 		//シーンマネジャー描画処理
 		SceneManager_Draw();

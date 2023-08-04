@@ -18,7 +18,7 @@
 *変数宣言
 ************************/
 
-GAME_MODE Game_mode;       //ゲームモード情報
+GAME_MODE Game_mode;       //ゲームモード情報 (現在)
 GAME_MODE Next_Mode;       //ゲームモード情報（次）
 
 
@@ -68,7 +68,6 @@ int SceneManager_Initialize(GAME_MODE mode)
 	return Read_Error;
 }
 
-]
 /***********************
 *シーン管理機能：初期化処理
 * 引数：ゲームモード情報

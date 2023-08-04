@@ -8,7 +8,7 @@
 
 #define HEIGHT          (12)
 #define WIDTH           (12)
-#define BLOCK_SIZE      (48)
+#define BLOCKSIZE      (48)
 #define BLOCK_IMAGE_MAX (10)
 #define ITEM_MAX        (8)
 #define SELECT_CURSOR   (0)
@@ -105,7 +105,7 @@ int StageInitialize(void)
 	}
 
 	//エラーチェック
-	for (i = 0; i < BLOCKIMAGE_MAX; i++)
+	for (i = 0; i < BLOCK_IMAGE_MAX; i++)
 	{
 		if (BlockImage[i] == -1)
 		{
@@ -157,7 +157,7 @@ void StageDraw(void)
 		{
 			if (Block[i][j].flg == TRUE && Block[i][j].image != NULL)
 			{
-				DrawGraph(Block[i][j].x, Block[i][j].y, BlockImage[Block[i][j].image]TRUE);
+				DrawGraph(Block[i][j].x, Block[i][j].y, BlockImage[Block[i][j].image],TRUE);
 			}
 		}
 	}
@@ -207,9 +207,9 @@ void CreateBlock(void)
 				else
 				{
 					Block[i][j].flg = TRUE;
-					Block[i][j].x = (j - 1) * BLOCKSEZE;
-					Block[i][j].y = (i - 1) * BLOCKSEZE;
-					Block[i][j].width = BLOCKSEIZE;
+					Block[i][j].x = (j - 1) * BLOCKSIZE;
+					Block[i][j].y = (i - 1) * BLOCKSIZE;
+					Block[i][j].width = BLOCKSIZE;
 					Block[i][j].height = BLOCKSIZE;
 					Block[i][j].GetRand(7) + 1;  //1~8の乱数
 				}
@@ -586,5 +586,81 @@ void combo_check_h(int y, int x, int* cnt, int* col)
 	if (Block[y][x].image == 0)
 	{
 		return;
+	}
+	*col = Block[y][x].image;
+	Color = Block[y][x].image;
+	Block[y][x].image = 0;
+	(*cnt)++;
+
+	if (Block[y + 1][x].image == Color)
+	{
+		combo_check_h(y + 1, x, cnt, col);
+	}
+	if (Block[y - 1][x].image == Color)
+	{
+		combo_check_h(y - 1, x, cnt, col);
+	}
+}
+/**********************
+*ステージ制御機能：連鎖チェック処理（横方向）
+*引数：なし
+*戻り値：連鎖有無（0：無し　1：有り）
+***********************/
+void combo_check_w(int y, int x, int* cnt, int* col)
+{
+	int Color = 0;
+	//対象ブロックが外枠の場合returnで処理を抜ける
+	if (Block[y][x].image == 0)
+	{
+		return;
+	}
+
+	*col = Block[y][x].image;
+	Color = Block[y][x].image;    //色取得
+	Block[y][x].image = 0;
+	(*cnt)++;
+
+	if (Block[y][x + 1].image == Color)
+	{
+		combo_check_w(y, x + 1, cnt, col);
+	}
+	if (Block[y][x - 1].image == Color)
+	{
+		combo_check_w(y, x - 1, cnt, col);
+	}
+}
+/**********************
+*ステージ制御機能：ブロック情報の保存処理
+*引数：なし
+*戻り値：なし
+***********************/
+void save_block(void)
+{
+	int i, j;
+
+	for (i = 0; i < HEIGHT; i++)
+	{
+		for (j = 0; j < WIDTH; j++)
+		{
+			Block[i][j].backup = Block[i][j].image;
+		}
+	}
+}
+
+/**********************
+*ステージ制御機能：ブロック情報を戻す処理
+*引数：なし
+*戻り値：なし
+***********************/
+void restore_block(void)
+{
+	int i, j;
+
+	for (i = 0; i < HEIGHT; i++)
+	{
+		for (j = 0; j < WIDTH; j++)
+		{
+			Block[i][j].image = Block[i][j].backup;
+		}
 	}
 }
