@@ -211,7 +211,7 @@ void CreateBlock(void)
 					Block[i][j].y = (i - 1) * BLOCKSIZE;
 					Block[i][j].width = BLOCKSIZE;
 					Block[i][j].height = BLOCKSIZE;
-					Block[i][j].GetRand(7) + 1;  //1~8の乱数
+					Block[i][j].image=GetRand(7) + 1;  //1~8の乱数
 				}
 			}
 		}
@@ -250,7 +250,7 @@ void CreateBlock(void)
 void SelectBlock(void)
 {
 	int TmpBlock;
-	int Rezult;
+	int Result;
 
 	//カーソル座標の取得
 	Select[SELECT_CURSOR].x = GetMousePositionX() / BLOCKSIZE;
@@ -303,7 +303,7 @@ void SelectBlock(void)
 	}
 
 	//選択ブロックを交換する。
-	if (ClickStatus = E_SECOND)
+	if (ClickStatus == E_SECOND)
 	{
 		TmpBlock = Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image;
 		Block[Select[NEXT_CURSOR].y + 1][Select[NEXT_CURSOR].x + 1].image =
