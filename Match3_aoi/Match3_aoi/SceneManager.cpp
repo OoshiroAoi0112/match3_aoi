@@ -18,7 +18,7 @@
 *変数宣言
 ************************/
 
-GAME_MODE Game_mode;       //ゲームモード情報 (現在)
+GAME_MODE Game_Mode;       //ゲームモード情報 (現在)
 GAME_MODE Next_Mode;       //ゲームモード情報（次）
 
 
@@ -39,6 +39,7 @@ int SceneManager_Initialize(GAME_MODE mode)
 
 	//シーン読み込み処理
 	//タイトル画面
+	Read_Error = TitleScene_Initialize();
 	if (Read_Error ==D_ERROR)
 	{
 		return D_ERROR;
@@ -89,13 +90,13 @@ void SceneManager_Update(void)
 			TitleScene_Update();
 			break;
 		case E_GAMEMAIN:
-			GameMain_Update();
+			GameMainScene_Update();
 			break;
 		case E_GAME_CLEAR:
-			TitleClear_Update();
+			GameClearScene_Update();
 			break;
 		case E_GAME_OVER:
-			GameOver_Update();
+			GameOverScene_Update();
 			break;
 		default:
 			break;
@@ -118,13 +119,13 @@ void SceneManager_Draw(void)
 		TitleScene_Draw();
 		break;
 	case E_GAMEMAIN:
-		GameMain_Draw();
+		GameMainScene_Draw();
 		break;
 	case E_GAME_CLEAR:
-		TitleClear_Draw();
+		GameClearScene_Draw();
 		break;
 	case E_GAME_OVER:
-		GameOver_Draw();
+		GameOverScene_Draw();
 		break;
 	default:
 		break;

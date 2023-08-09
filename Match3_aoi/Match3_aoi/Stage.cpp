@@ -153,7 +153,7 @@ void StageDraw(void)
 	//ブロックを描画
 	for (int i = 0; i < HEIGHT; i++)
 	{
-		for (int j = 0; j < HEIGHT; i++)
+		for (int j = 0; j < HEIGHT; j++)
 		{
 			if (Block[i][j].flg == TRUE && Block[i][j].image != NULL)
 			{
@@ -172,13 +172,6 @@ void StageDraw(void)
 	//ミッションを描画
 	SetFontSize(20);
 	DrawFormatString(590, 211, GetColor(255, 255, 255), "%3d", Stage_Mission);
-
-	//アイテムの取得個数を描画
-	for (int i = 0; i < ITEM_MAX; i++)
-	{
-		DrawRotaGraph(540, 245 + i * 30, 0.5f, 0, BlockImage[i + 1], TRUE, 0);
-		DrawFormatString(580, 235 + i * 30, GetColor(255, 255, 255), "%3d", Item[i]);
-	}
 }
 
 /**********************
@@ -506,6 +499,17 @@ int Get_StageState(void)
 *戻り値：ミッションがクリアしているか
 ***********************/
 
+int Get_StageClearFlag(void)
+{
+	return ClearFlag;
+}
+
+/**********************
+*ステージ制御機能：ミッション情報取得処理
+*引数：なし
+*戻り値：ミッションがクリアしているか
+***********************/
+
 int Get_StageScore(void)
 {
 	return Stage_Score;
@@ -555,7 +559,7 @@ int combo_check(int y, int x)
 
 
 	//３つ以上並んでいるか？
-	if ((CountH >= 3 || CountH >= 3))
+	if (CountH >= 3 || CountW >= 3)
 	{
 		if (CountH >= 3)
 		{
