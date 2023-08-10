@@ -7,7 +7,7 @@
 *マクロ定義
 ************************/
 
-#define TIMELIMIT        (3600*3)       //制限時間
+#define TIMELIMIT        (360*3)       //制限時間
 #define NUMBER_IMAGE_MAX (10)   //数字描画数
 
 
@@ -142,7 +142,7 @@ void GameMainScene_Draw(void)
 
 
 	//フェードアウト状態か？
-	if (Get_StageState() == -1)
+	if (Get_StageState() == 1)
 	{
 		FadeOutBlock();         //フェードアウトする。
 	}

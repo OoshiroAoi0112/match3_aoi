@@ -28,7 +28,7 @@ int LastTime;
 /*************************
 *フレーム制御機能：初期化処理
 *引数：なし
-* 戻り値：なし
+*戻り値：なし
 **************************/
 
 void FreamControl_Initialize(void)
@@ -38,6 +38,12 @@ void FreamControl_Initialize(void)
 	Wait = 0;
 	LastTime = 0;
 }
+
+/*************************
+*フレーム制御機能：更新処理
+*引数：なし
+*戻り値：なし
+**************************/
 
 void FreamControl_Update(void)
 {

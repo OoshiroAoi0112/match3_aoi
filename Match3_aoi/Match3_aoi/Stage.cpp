@@ -85,6 +85,7 @@ int StageInitialize(void)
 	//画像読み込み
 	LoadDivGraph("images/block.png", BLOCK_IMAGE_MAX, BLOCK_IMAGE_MAX,
 		1, BLOCKSIZE, BLOCKSIZE, BlockImage);
+	StageImage = LoadGraph("images/stage.png");
 
 	//音源読み込み
 	ClickSE = LoadSoundMem("sounds/click_se.mp3");
@@ -93,6 +94,7 @@ int StageInitialize(void)
 
 	//ブロック生成処理
 	CreateBlock();
+
 	ClickStatus = E_NONE;
 	Stage_State = 0;
 	Stage_Score = 0;
@@ -364,7 +366,7 @@ void FadeOutBlock(void)
 	//描画モードをノーブレンドにする
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
-	BlendMode - 5;
+	BlendMode -= 5;
 
 	if (BlendMode == 0)
 	{
