@@ -628,30 +628,16 @@ void combo_check_h(int y, int x, int* cnt, int* col)
 	Block[y][x].image = 0;
 	(*cnt)++;
 
-	if (Block[y + 1][x].image == Color)
-	{
-		combo_check_h(y + 1, x+1, cnt, col);
-	}
+	
 	if (Block[y + 1][x].image == Color)
 	{
 		combo_check_h(y + 1, x, cnt, col);
-	}
-	if (Block[y + 1][x].image == Color)
-	{
-		combo_check_h(y + 1, x-1, cnt, col);
-	}
-	if (Block[y - 1][x].image == Color)
-	{
-		combo_check_h(y - 1, x+1, cnt, col);
 	}
 	if (Block[y - 1][x].image == Color)
 	{
 		combo_check_h(y - 1, x, cnt, col);
 	}
-	if (Block[y - 1][x].image == Color)
-	{
-		combo_check_h(y - 1, x-1, cnt, col);
-	}
+	
 }
 /**********************
 *ステージ制御機能：連鎖チェック処理（横方向）
@@ -674,28 +660,15 @@ void combo_check_w(int y, int x, int* cnt, int* col)
 
 	if (Block[y][x + 1].image == Color)
 	{
-		combo_check_w(y+1, x + 1, cnt, col);
-	}
-	if (Block[y][x + 1].image == Color)
-	{
 		combo_check_w(y, x + 1, cnt, col);
 	}
-	if (Block[y][x + 1].image == Color)
-	{
-		combo_check_w(y-1, x + 1, cnt, col);
-	}
+	
 	if (Block[y][x - 1].image == Color)
 	{
 		combo_check_w(y+1, x - 1, cnt, col);
 	}
-	if (Block[y][x - 1].image == Color)
-	{
-		combo_check_w(y, x - 1, cnt, col);
-	}
-	if (Block[y][x - 1].image == Color)
-	{
-		combo_check_w(y-1, x - 1, cnt, col);
-	}
+	
+	
 }
 /**********************
 *ステージ制御機能：ブロック情報の保存処理
