@@ -468,14 +468,44 @@ void CheckBlock(void)
 void CheckClear(void)
 {
 	int i;
+	int Item_MissionClear=0;
 
 	for (i = 0; i < ITEM_MAX; i++)
 	{
 		if (Item[i] >= Stage_Mission)
 		{
-			ClearFlag = TRUE;
-			break;
+			switch (i)
+			{
+			case 0:
+				Item_MissionClear++;
+				break;
+			case 1:
+				Item_MissionClear++;
+				break;
+			case 2:
+				Item_MissionClear++;
+				break;
+			case 3:
+				Item_MissionClear++;
+				break;
+			case 4:
+				Item_MissionClear++;
+				break;
+			case 5:
+				Item_MissionClear++;
+				break;
+			case 6:
+				Item_MissionClear++;
+				break;
+			case 7:
+				Item_MissionClear++;
+				break;
+			}
 		}
+	}
+	if (Item_MissionClear== 8)
+	{
+		ClearFlag = TRUE;
 	}
 	if (ClearFlag != TRUE)
 	{
@@ -600,11 +630,27 @@ void combo_check_h(int y, int x, int* cnt, int* col)
 
 	if (Block[y + 1][x].image == Color)
 	{
+		combo_check_h(y + 1, x+1, cnt, col);
+	}
+	if (Block[y + 1][x].image == Color)
+	{
 		combo_check_h(y + 1, x, cnt, col);
+	}
+	if (Block[y + 1][x].image == Color)
+	{
+		combo_check_h(y + 1, x-1, cnt, col);
+	}
+	if (Block[y - 1][x].image == Color)
+	{
+		combo_check_h(y - 1, x+1, cnt, col);
 	}
 	if (Block[y - 1][x].image == Color)
 	{
 		combo_check_h(y - 1, x, cnt, col);
+	}
+	if (Block[y - 1][x].image == Color)
+	{
+		combo_check_h(y - 1, x-1, cnt, col);
 	}
 }
 /**********************
@@ -628,11 +674,27 @@ void combo_check_w(int y, int x, int* cnt, int* col)
 
 	if (Block[y][x + 1].image == Color)
 	{
+		combo_check_w(y+1, x + 1, cnt, col);
+	}
+	if (Block[y][x + 1].image == Color)
+	{
 		combo_check_w(y, x + 1, cnt, col);
+	}
+	if (Block[y][x + 1].image == Color)
+	{
+		combo_check_w(y-1, x + 1, cnt, col);
+	}
+	if (Block[y][x - 1].image == Color)
+	{
+		combo_check_w(y+1, x - 1, cnt, col);
 	}
 	if (Block[y][x - 1].image == Color)
 	{
 		combo_check_w(y, x - 1, cnt, col);
+	}
+	if (Block[y][x - 1].image == Color)
+	{
+		combo_check_w(y-1, x - 1, cnt, col);
 	}
 }
 /**********************

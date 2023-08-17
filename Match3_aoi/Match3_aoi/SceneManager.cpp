@@ -21,7 +21,6 @@
 GAME_MODE Game_Mode;       //ゲームモード情報 (現在)
 GAME_MODE Next_Mode;       //ゲームモード情報（次）
 
-
 /***********************
 *プロトタイプ宣言
 ************************/
@@ -46,10 +45,12 @@ int SceneManager_Initialize(GAME_MODE mode)
 	}
 	//ゲームメイン画面
 	Read_Error = GameMainScene_Initialize();
-	if (Read_Error == D_ERROR)
-	{
-		return D_ERROR;
-	}
+	
+		if (Read_Error == D_ERROR)
+		{
+			return D_ERROR;
+		}
+		
 	//ゲームクリア画面
 	Read_Error = GameClearScene_Initialize();
 	if (Read_Error == D_ERROR)

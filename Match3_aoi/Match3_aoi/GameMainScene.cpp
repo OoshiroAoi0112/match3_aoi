@@ -7,7 +7,7 @@
 *マクロ定義
 ************************/
 
-#define TIMELIMIT        (360*3)       //制限時間
+#define TIMELIMIT        (3600*3)       //制限時間
 #define NUMBER_IMAGE_MAX (10)   //数字描画数
 
 
@@ -28,6 +28,7 @@ int GameCount;     //初期化されないようにするためのカウント
 int ReStartFlag;
 
 int NumberImage[NUMBER_IMAGE_MAX];      //数字用画像
+int j;
 
 
 /**********************
@@ -62,23 +63,27 @@ int GameMainScene_Initialize(void)
 			break;
 		}
 	}
+	j++;
 
 	//ゲームプレイが初回かどうか？
-	if (GameCount == 0)
+	if (j == 1 || j % 2 == 1)
 	{
-		GameScore = 0;           //スコアの初期化
-		GameLevel = 1;           //ゲームレベルの初期化
-		Set_StageMission(3);     //ミッションの初期化
-		GameCount++;             //次回の設定
-	}
-	else
-	{
-		GameLevel++;             //ゲームレベルの更新
-		Set_StageMission(3);     //ミッションを増やす
-	}
-	GameTime = TIMELIMIT;        //制限時間の初期化
+		if (GameCount == 0)
+		{
+			GameScore = 0;           //スコアの初期化
+			GameLevel = 1;           //ゲームレベルの初期化
+			Set_StageMission(3);     //ミッションの初期化
+			GameCount++;             //次回の設定
+		}
+		else
+		{
+			GameLevel++;             //ゲームレベルの更新
+			Set_StageMission(3);     //ミッションを増やす
+		}
+		GameTime = TIMELIMIT;        //制限時間の初期化
 
-	return ret;
+		return ret;
+	}
 }
 
 /**********************
