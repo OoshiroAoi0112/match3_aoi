@@ -627,36 +627,21 @@ void combo_check_h(int y, int x, int* cnt, int* col)
 	Block[y][x].image = 0;
 	(*cnt)++;
 
-	
+	if (Block[y][x + 1].image == Color)
+	{
+		combo_check_w(y, x + 1, cnt, col);
+	}
+	if (Block[y][x - 1].image == Color)
+	{
+		combo_check_w(y, x - 1, cnt, col);
+	}
 	if (Block[y + 1][x].image == Color)
 	{
 		combo_check_h(y + 1, x, cnt, col);
-		if (Block[y][x + 1].image == Color)
-		{
-			combo_check_w(y, x + 1, cnt, col);
-
-		}
-		if (Block[y][x - 1].image == Color)
-		{
-			combo_check_w(y, x - 1, cnt, col);
-
-		}
-		
 	}
 	if (Block[y - 1][x].image == Color)
 	{
 		combo_check_h(y - 1, x, cnt, col);
-		if (Block[y][x + 1].image == Color)
-		{
-			combo_check_w(y, x + 1, cnt, col);
-
-		}
-		if (Block[y][x - 1].image == Color)
-		{
-			combo_check_w(y, x - 1, cnt, col);
-
-		}
-		
 	}
 	
 }
@@ -682,33 +667,19 @@ void combo_check_w(int y, int x, int* cnt, int* col)
 	if (Block[y][x + 1].image == Color)
 	{
 		combo_check_w(y, x + 1, cnt, col);
-		if (Block[y + 1][x].image == Color)
-		{
-			combo_check_h(y + 1, x, cnt, col);
-
-		}
-		if (Block[y - 1][x].image == Color)
-		{
-			combo_check_h(y - 1, x, cnt, col);
-
-		}
-		
 	}
 	if (Block[y][x - 1].image == Color)
 	{
 		combo_check_w(y, x - 1, cnt, col);
-		if (Block[y + 1][x].image == Color)
-		{
-			combo_check_h(y + 1, x, cnt, col);
-
-		}
-		if (Block[y - 1][x].image == Color)
-		{
-			combo_check_h(y - 1, x, cnt, col);
-
-		}
 	}
-	
+	if (Block[y + 1][x].image == Color)
+	{
+		combo_check_h(y + 1, x, cnt, col);
+	}
+	if (Block[y - 1][x].image == Color)
+	{
+		combo_check_h(y - 1, x, cnt, col);
+	}
 	
 }
 
