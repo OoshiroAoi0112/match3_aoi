@@ -28,7 +28,7 @@ int GameCount;     //初期化されないようにするためのカウント
 int ReStartFlag;
 
 int NumberImage[NUMBER_IMAGE_MAX];      //数字用画像
-int j;
+int GameLevelControl;
 
 
 /**********************
@@ -63,10 +63,10 @@ int GameMainScene_Initialize(void)
 			break;
 		}
 	}
-	j++;
+	GameLevelControl++;
 
 	//ゲームプレイが初回かどうか？
-	if (j == 1 || j % 2 == 1)
+	if (GameLevelControl == 1 || GameLevelControl % 2 == 1)  //処理が奇数回のときだけ処理を行う
 	{
 		if (GameCount == 0)
 		{
